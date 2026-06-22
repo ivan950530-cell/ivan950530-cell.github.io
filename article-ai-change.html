@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI。變與不變 | 專業觀點</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Noto+Serif+TC:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            background-color: #f9f6f1;
+        }
+
+        .article-hero {
+            padding-top: 150px;
+            padding-bottom: 70px;
+            background: linear-gradient(to bottom, #f8f4ee 0%, #fbfaf8 100%);
+        }
+
+        .article-breadcrumb {
+            font-size: 0.9rem;
+            letter-spacing: 0.4px;
+            color: #8a8175;
+        }
+
+        .article-breadcrumb a {
+            color: #8a8175;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .article-breadcrumb a:hover {
+            color: #5f5549;
+        }
+
+        .article-page-title {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.5;
+            color: #3d372f;
+            margin-bottom: 1rem;
+        }
+
+        .article-subtitle {
+            max-width: 760px;
+            margin: 0 auto;
+            color: #7b7267;
+            line-height: 1.9;
+            font-size: 0.98rem;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .article-meta span {
+            background: #f3eee7;
+            border: 1px solid #e1d8cc;
+            color: #756b5f;
+            padding: 7px 12px;
+            font-size: 0.82rem;
+            letter-spacing: 0.4px;
+        }
+
+        .article-main {
+            padding: 70px 0 90px;
+        }
+
+        .article-layout {
+            display: grid;
+            grid-template-columns: 1fr minmax(0, 780px) 260px;
+            gap: 40px;
+        }
+
+        .article-content-card {
+            grid-column: 2 / 3;
+            background: #fff;
+            border: 1px solid #ebe3d9;
+            box-shadow: 0 12px 40px rgba(120, 100, 75, 0.06);
+            padding: 3rem 3rem 3.2rem;
+        }
+
+        .article-content-card p {
+            color: #5f584f;
+            line-height: 2;
+            font-size: 1rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .article-content-card h2 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: #3f392f;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .article-content-card ul {
+            padding-left: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content-card li {
+            color: #5f584f;
+            line-height: 1.95;
+            margin-bottom: 0.55rem;
+        }
+
+        .article-quote {
+            border-left: 3px solid #b49a77;
+            background: #faf6f1;
+            padding: 1.2rem 1.3rem;
+            margin: 2rem 0;
+            color: #645b50;
+            line-height: 1.95;
+        }
+
+        .article-sidebar {
+            grid-column: 3 / 4;
+            align-self: start;
+            position: sticky;
+            top: 120px;
+        }
+
+        .article-side-box {
+            background: #fff;
+            border: 1px solid #ebe3d9;
+            padding: 1.3rem 1.2rem;
+            box-shadow: 0 10px 30px rgba(120, 100, 75, 0.04);
+            margin-bottom: 1.2rem;
+        }
+
+        .article-side-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #443d34;
+            margin-bottom: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+
+        .article-side-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .article-side-box li {
+            margin-bottom: 0.65rem;
+            color: #6d6459;
+            line-height: 1.7;
+            font-size: 0.92rem;
+        }
+
+        .article-back-link {
+            display: inline-block;
+            color: #6e6256;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .article-back-link:hover {
+            color: #3f392f;
+            transform: translateX(-2px);
+        }
+
+        .article-bottom-nav {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee5da;
+        }
+
+        .article-bottom-nav a {
+            color: #5b5145;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .article-bottom-nav a:hover {
+            color: #2f2a24;
+        }
+
+        @media (max-width: 1200px) {
+            .article-layout {
+                grid-template-columns: 1fr minmax(0, 820px);
+            }
+
+            .article-sidebar {
+                grid-column: 2 / 3;
+                position: static;
+                margin-top: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .article-hero {
+                padding-top: 120px;
+                padding-bottom: 55px;
+            }
+
+            .article-page-title {
+                font-size: 1.65rem;
+            }
+
+            .article-content-card {
+                padding: 2rem 1.25rem 2.2rem;
+            }
+
+            .article-layout {
+                display: block;
+            }
+
+            .article-sidebar {
+                margin-top: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top custom-navbar navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><span class="brand-text">Portfolio.</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">關於我</a></li>
+                    <li class="nav-item"><a class="nav-link" href="projects.html">作品集</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">活動照片</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="article-hero text-center">
+        <div class="container">
+            <div class="article-breadcrumb mb-3">
+                <a href="index.html">首頁</a> / 專業觀點
+            </div>
+
+            <span class="section-subtitle-en">Professional Insight</span>
+            <h1 class="article-page-title">AI。變與不變</h1>
+
+            <p class="article-subtitle">
+                在 AI 快速演進的時代裡，技術工具與學習方式都正在被重新定義。
+                但在「擁抱效率」與「保有基本功」之間，我們或許更需要思考的，不是選邊站，而是如何理解哪些會改變，哪些不該被取代。
+            </p>
+
+            <div class="article-meta">
+                <span>Artificial Intelligence</span>
+                <span>Learning</span>
+                <span>Technology & Reflection</span>
+                <span>2026</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main -->
+    <main class="article-main">
+        <div class="container">
+            <div class="article-layout">
+
+                <article class="article-content-card">
+
+                    <p>
+                        隨著時代的推移，在AI快速的發展下，大家心裡可能想的是......以後還需要學寫程式嗎?對我來說，在學習的過程中，常在使用AI工具的比例中猶豫不決。究竟應該全靠著AI的輔助，還是循規蹈矩以土法煉鋼的方式從頭開始......?
+                    </p>
+
+                    <p>
+                        在現今時代中，AI的發展逐日變化，進步的速度超過我們所能想像的，也逐漸影響我們的生活，首當其衝的就是一批正在學習程式語言的學生。在AI技術的變化下，我相信或許有些東西是不變的，就如我們學習程式語言的方式，我認為應當在學習得初期靠著土法煉鋼的方式，學習程式的基礎。了解基本的程式概念，培養我們基礎的能力。有了基礎概念後，加上AI的輔助，才能學習使用AI寫程式。雖然AI工具快速的發展，但總有些東西是在變中不變的，願我們在學習程式語言方面，共勉之。
+                    </p>
+
+                    <div class="article-bottom-nav">
+                        <a href="index.html">← 返回首頁</a>
+                    </div>
+
+                </article>
+
+                <!-- 側欄 -->
+                <aside class="article-sidebar">
+                    <div class="article-side-box">
+                        <div class="article-side-title">文章資訊</div>
+                        <ul>
+                            <li>分類｜專業觀點</li>
+                            <li>主題｜AI、學習方式與基本功</li>
+                            <li>關鍵字｜Artificial Intelligence / Learning / Critical Thinking</li>
+                        </ul>
+                    </div>
+
+                    <div class="article-side-box">
+                        <div class="article-side-title">本文核心</div>
+                        <ul>
+                            <li>AI 改變的是方法與速度，但不應取代理解與判斷。</li>
+                            <li>工具越強，越需要保留人的主體性與思考深度。</li>
+                            <li>善用 AI 與保有基本功並不是互斥的選擇。</li>
+                        </ul>
+                    </div>
+
+                    <div class="article-side-box">
+                        <div class="article-side-title">快速返回</div>
+                        <a href="index.html" class="article-back-link">← 回到首頁</a>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-section py-5">
+        <div class="container">
+            <div class="row gy-4 align-items-start justify-content-between">
+                <div class="col-lg-5 footer-brand-area text-center text-lg-start">
+                    <span class="footer-brand-text">Portfolio.</span>
+                    <p class="footer-tagline mt-2">在理性的程式邏輯中，揉合感性的視覺美學。</p>
+                    <p class="footer-copyright mb-0 mt-4 d-none d-lg-block">© 2026 鍾友恆 All rights reserved.</p>
+                </div>
+                <div class="col-lg-5 footer-info-area">
+                    <div class="footer-info-box">
+                        <span class="footer-info-title text-center text-lg-start d-block mb-3">CONTACT ME</span>
+                        <ul class="list-unstyled footer-contact-list">
+                            <li class="d-flex align-items-center justify-content-center justify-content-lg-start mb-2">
+                                <span class="contact-label">Email ‧</span>
+                                <a href="mailto:your.email@example.com" class="contact-link">your.email@example.com</a>
+                            </li>
+                            <li class="d-flex align-items-center justify-content-center justify-content-lg-start mb-2">
+                                <span class="contact-label">GitHub ‧</span>
+                                <a href="https://github.com" target="_blank"
+                                    class="contact-link">github.com/yourusername</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 text-center d-lg-none pt-3 border-top border-light-subtle">
+                    <p class="footer-copyright mb-0">© 2026 鍾友恆 All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
