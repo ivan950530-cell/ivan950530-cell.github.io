@@ -5,12 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>作品集 | 鍾友恆</title>
+    <meta name="description" content="專題實作與課程作品：行動 App、資料庫、AI 應用、前端網頁與管理個案，附說明、程式碼與文件。">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="作品集 | 鍾友恆">
+    <meta property="og:description" content="專題實作與課程作品：行動 App、資料庫、AI 應用、前端網頁與管理個案，附說明、程式碼與文件。">
+    <meta property="og:url" content="https://ivan950530-cell.github.io/projects.html">
+    <meta property="og:image" content="https://ivan950530-cell.github.io/images/frontend-cover.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+TC:wght@400;600;700&display=swap"
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script>document.documentElement.classList.add('js-anim');</script>
 
     <style>
         /* ===== Projects Page 專用微調 ===== */
@@ -59,6 +68,66 @@
             height: 240px;
         }
 
+        /* ===== 專題實作：滿版橫式主打卡片 ===== */
+        .project-image-wrap.h-full {
+            height: 240px;
+        }
+
+        @media (min-width: 768px) {
+            .project-image-wrap.h-full {
+                height: 100%;
+                min-height: 320px;
+            }
+
+            .card-horizontal .project-card-body {
+                padding: 1.8rem 2rem 1.6rem;
+            }
+        }
+
+        .card-featured {
+            border-left: 4px solid #363c4a !important;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #8a7152;
+            background: rgba(163, 138, 104, 0.14);
+            padding: 5px 10px;
+            white-space: nowrap;
+        }
+
+        .status-badge::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #a38a68;
+        }
+
+        .capstone-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 1.4rem;
+            font-size: 0.82rem;
+            color: #9a8f82;
+            letter-spacing: 0.4px;
+            border-top: 1px solid #eee8e0;
+            border-bottom: 1px solid #eee8e0;
+            padding: 0.6rem 0;
+            margin-bottom: 1rem;
+        }
+
+        .capstone-meta strong {
+            color: #5c544a;
+            font-weight: 600;
+            margin-right: 0.3rem;
+        }
+
         /* 內文區 */
         .project-card-body {
             padding: 1.4rem 0.35rem 0.2rem;
@@ -94,7 +163,6 @@
             justify-content: center;
         }
 
-        /* 第二區兩張卡讓按鈕更穩 */
         .project-actions .dropdown {
             flex: 1 1 0;
         }
@@ -119,6 +187,83 @@
             white-space: pre-wrap;
             word-break: break-word;
         }
+
+        /* ===== 照片輪播視窗（米白色，與比賽經歷頁一致） ===== */
+        .photo-modal {
+            background: #faf8f5;
+            border: 1px solid #e8e2da;
+            border-radius: 0;
+        }
+
+        .photo-modal-en {
+            display: block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #9a8f82;
+        }
+
+        .photo-modal .modal-title {
+            color: #332d26;
+        }
+
+        .photo-slide {
+            display: block;
+            width: 100%;
+            height: 60vh;
+            max-height: 520px;
+            object-fit: contain;
+            background: #efe9e1;
+        }
+
+        .photo-count {
+            margin: 0.8rem 0 0.2rem;
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            color: #a38a68;
+        }
+
+        .photo-carousel .carousel-control-prev,
+        .photo-carousel .carousel-control-next {
+            width: 48px;
+            height: 48px;
+            top: calc(min(60vh, 520px) / 2 - 24px);
+            bottom: auto;
+            margin: 0 10px;
+            background: rgba(54, 60, 74, 0.55);
+            border-radius: 50%;
+            opacity: 0.85;
+        }
+
+        .photo-carousel .carousel-control-prev-icon,
+        .photo-carousel .carousel-control-next-icon {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        /* ===== 捲動淡入：卡片進入畫面時由下往上淡入 ===== */
+        .js-anim .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            transition-delay: var(--reveal-delay, 0s);
+        }
+
+        .js-anim .reveal.in-view {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .js-anim .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
     </style>
 </head>
 
@@ -135,6 +280,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">關於我</a></li>
                     <li class="nav-item"><a class="nav-link" href="projects.html">作品集</a></li>
+                    <li class="nav-item"><a class="nav-link" href="competitions.html">比賽經歷</a></li>
                     <li class="nav-item"><a class="nav-link" href="gallery.html">活動照片</a></li>
                 </ul>
             </div>
@@ -147,27 +293,108 @@
             <h2 class="section-title">專案作品集</h2>
             <div class="hero-divider-left mx-auto my-3"></div>
             <p class="text-muted small mx-auto" style="max-width: 500px; letter-spacing: 0.5px;">
-                在理性邏輯中構建架構，在感性洞察中發掘價值。以下整理了我在學期間的核心系統開發、
-                資料庫設計、人工智慧應用與管理個案實作，呈現從需求理解、功能規劃到成果展示的完整學習歷程。
+                這裡整理了我的專題與五項課程作品，包含行動 App、資料庫、AI 應用、前端網頁與管理個案。
+                每個作品都附上說明、程式碼或文件，看得到從理解需求到完成成果的過程。
             </p>
         </div>
     </section>
 
     <main class="container pb-5 mb-5">
 
+        <!-- ===== 專題實作（主打作品） ===== -->
+        <div class="my-5 reveal" id="capstone">
+            <div class="border-start border-2 border-dark ps-3 mb-4">
+                <span class="text-uppercase small text-muted fw-bold"
+                    style="font-family: 'Cormorant Garamond', serif; letter-spacing: 2px;">Capstone Project</span>
+                <h3 class="fs-5 fw-bold text-dark mt-1">專題實作</h3>
+            </div>
+
+            <div class="card custom-card card-horizontal card-featured border-0 bg-transparent">
+                <div class="row g-0 h-100">
+                    <div class="col-md-5">
+                        <!-- 封面：系統八大功能流程圖（橫向圖，用 contain 完整顯示、不裁切） -->
+                        <div class="project-image-wrap h-full d-flex align-items-center" style="background: #ffffff;">
+                            <img src="images/capstone-flow.png" class="card-img-top card-img-top-fixed"
+                                alt="微 AI 轉型行不行 系統功能流程" style="height: auto; object-fit: contain;">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body project-card-body px-1 d-flex flex-column h-100">
+                            <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge bg-light text-secondary rounded-0 border small"
+                                        style="color: #363c4a !important;">InnoServe 參賽作品</span>
+                                    <span class="badge bg-light text-secondary rounded-0 border small">AI
+                                        Transformation</span>
+                                    <span class="badge bg-light text-secondary rounded-0 border small">PHP / MySQL /
+                                        OpenAI API</span>
+                                </div>
+                                <span class="status-badge">進行中</span>
+                            </div>
+
+                            <h4 class="card-title fs-5 fw-bold mb-1">微 AI 轉型行不行</h4>
+                            <p class="small mb-3" style="font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 1px; color: #9a8f82;">
+                                MicroAI Transformation</p>
+
+                            <div class="capstone-meta">
+                                <span><strong>團隊</strong>6 人</span>
+                                <span><strong>負責</strong>主題發想、程式開發</span>
+                                <span><strong>技術</strong>PHP、JavaScript、MySQL、OpenAI API、Node.js、Playwright</span>
+                            </div>
+
+                            <p class="card-text text-muted mb-4 small flex-grow-1">
+                                對資源有限的微小型企業而言，AI 轉型賭不起，也等不起。本專題提出「滾動式升級」的轉型系統，以 PDCA 閉環讓轉型持續推進：
+                                <br><strong>‧ 職務進化地圖：</strong>由 AI 分析每個職務需要哪些 AI 技能、要達到 Level 0–5 的哪個等級。
+                                <br><strong>‧ 技能缺口補丁：</strong>透過自評與 AI 對話演練測出員工的真實起點，推薦學習資源補足缺口。
+                                <br><strong>‧ AI 協同工作台：</strong>交叉比對工作日誌、成果與 AI 對話紀錄，分辨真正的應用與表演式的「AI 劇院」。
+                                <br><strong>‧ 人力決策：</strong>依累積的數據比較培訓與招募的成本效益，協助經營者做出取捨。
+                            </p>
+
+                            <div class="project-actions mt-auto pt-2 d-flex gap-2">
+                                <div class="dropdown flex-fill">
+                                    <button class="btn btn-custom-dark btn-sm w-100 dropdown-toggle" type="button"
+                                        data-bs-toggle="dropdown">
+                                        系統概述文件
+                                    </button>
+                                    <ul class="dropdown-menu w-100">
+                                        <li><button class="dropdown-item"
+                                                onclick="openDoc('https://drive.google.com/file/d/1F-aO2jw_TNu4nSxMEEnkRNbQaJ2ocQlx/preview')">線上預覽</button>
+                                        </li>
+                                        <li><a class="dropdown-item" target="_blank"
+                                                href="https://drive.google.com/file/d/1F-aO2jw_TNu4nSxMEEnkRNbQaJ2ocQlx/view?usp=drive_link">
+                                                下載 PDF
+                                            </a></li>
+                                    </ul>
+                                </div>
+                                <!--
+                                三分鐘介紹影片：有 YouTube 連結後，把「你的影片網址」換掉，再拿掉這段註解符號即可
+                                <a href="你的影片網址" target="_blank"
+                                    class="btn btn-custom-outline btn-sm flex-fill text-center">
+                                    三分鐘介紹影片
+                                </a>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== 課程成果（5 項）：桌機第一排 3 張、第二排 2 張置中 ===== -->
         <div class="my-5">
             <div class="border-start border-2 border-dark ps-3 mb-4">
                 <span class="text-uppercase small text-muted fw-bold"
-                    style="font-family: 'Cormorant Garamond', serif; letter-spacing: 2px;">Category 01</span>
-                <h3 class="fs-5 fw-bold text-dark mt-1">系統開發與演算法實作</h3>
+                    style="font-family: 'Cormorant Garamond', serif; letter-spacing: 2px;">Course Projects</span>
+                <h3 class="fs-5 fw-bold text-dark mt-1">課程成果</h3>
             </div>
 
-            <div class="row g-4">
+            <!-- justify-content-center：讓最後一排不滿 3 張時置中 -->
+            <div class="row g-4 justify-content-center">
 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6 reveal">
                     <div class="card custom-card h-100 border-0 bg-transparent">
                         <div class="project-image-wrap h-220">
-                            <img src="images/c22b165c-ee1f-4493-8384-d46450b9a95a.png"
+                            <img loading="lazy" decoding="async" src="images/c22b165c-ee1f-4493-8384-d46450b9a95a.png"
                                 class="card-img-top card-img-top-fixed" alt="行動應用程式設計"
                                 style="height: 100%; object-fit: cover;">
                         </div>
@@ -183,11 +410,8 @@
                                 <br><strong>‧ 學生端功能：</strong>支援個人資料修改與個人歷史學期成績查詢。
                                 <br><strong>‧ 管理者端功能：</strong>具備學生資料維護、課程資料建立、成績登錄管理與全院成績查閱之完整權限。
                             </p>
-                            <div class="project-actions mt-auto pt-2 d-flex gap-2">
-                                <a href="https://drive.google.com/file/d/1EwCL5_qS5hAJaqNc10iNNhnd6QytjiLJ/view?usp=drive_link"
-                                    target="_blank" class="btn btn-custom-dark btn-sm flex-fill text-center">雲端下載原始碼</a>
-
-                                <button type="button" class="btn btn-outline-secondary btn-sm flex-fill"
+                            <div class="project-actions mt-auto pt-2">
+                                <button type="button" class="btn btn-custom-dark btn-sm w-100"
                                     data-bs-toggle="modal" data-bs-target="#codeModalStudent">
                                     查看關鍵程式碼
                                 </button>
@@ -196,10 +420,10 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6 reveal">
                     <div class="card custom-card h-100 border-0 bg-transparent">
                         <div class="project-image-wrap h-220">
-                            <img src="images/caebdaf5-7a3e-402b-8fa5-88204cf1e746.png"
+                            <img loading="lazy" decoding="async" src="images/caebdaf5-7a3e-402b-8fa5-88204cf1e746.png"
                                 class="card-img-top card-img-top-fixed" alt="資料庫程式設計"
                                 style="height: 100%; object-fit: cover;">
                         </div>
@@ -226,10 +450,10 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-12">
+                <div class="col-lg-4 col-md-6 reveal">
                     <div class="card custom-card h-100 border-0 bg-transparent">
                         <div class="project-image-wrap h-220">
-                            <img src="images/2f567067-e1cf-4fa1-ba22-643d65717b4d.png"
+                            <img loading="lazy" decoding="async" src="images/2f567067-e1cf-4fa1-ba22-643d65717b4d.png"
                                 class="card-img-top card-img-top-fixed" alt="人工智慧程式設計"
                                 style="height: 100%; object-fit: cover;">
                         </div>
@@ -238,11 +462,11 @@
                                 <span class="badge bg-light text-secondary rounded-0 border small"
                                     style="color: #5a8c76 !important;">Python</span>
                                 <span class="badge bg-light text-secondary rounded-0 border small">Web Scraping /
-                                    AI</span>
+                                    NLP</span>
                             </div>
                             <h4 class="card-title fs-5 fw-bold mb-3">自動化新聞爬蟲與智慧文本摘要系統</h4>
                             <p class="card-text text-muted mb-4 small flex-grow-1">
-                                結合網路爬蟲與自然語言處理技術。系統能夠自動化定向追蹤並抓取網路即時新聞內容，並在成功獲取文本資料後，運用 AI 模型進行關鍵字提煉與精準的自動化新聞摘要生成。
+                                結合網路爬蟲與自然語言處理技術，自動抓取指定新聞網站的最新文章，去除重複連結後，再以 LSA（潛在語意分析）演算法挑出重點句，自動產生新聞摘要。
                             </p>
                             <div class="project-actions mt-auto pt-2 d-flex gap-2">
                                 <a href="https://www.youtube.com/watch?v=W9j1H6BAmfw" target="_blank"
@@ -258,26 +482,51 @@
                     </div>
                 </div>
 
-            </div>
-        </div>
-
-        <div class="my-5 pt-4">
-            <div class="border-start border-2 border-dark ps-3 mb-4">
-                <span class="text-uppercase small text-muted fw-bold"
-                    style="font-family: 'Cormorant Garamond', serif; letter-spacing: 2px;">Category 02</span>
-                <h3 class="fs-5 fw-bold text-dark mt-1">管理個案探討與創新競賽</h3>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-lg-6">
+                <div class="col-lg-4 col-md-6 reveal">
                     <div class="card custom-card h-100 border-0 bg-transparent">
-                        <div class="project-image-wrap h-240">
-                            <img src="images/958ec635-b771-4ce8-a0f8-ac7e98795930.png"
+                        <div class="project-image-wrap h-220">
+                            <img loading="lazy" decoding="async" src="images/frontend-cover.jpg"
+                                class="card-img-top card-img-top-fixed" alt="個人作品集網站：桌機與手機版畫面"
+                                style="height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="card-body project-card-body px-1 d-flex flex-column">
+                            <div class="d-flex flex-wrap gap-2 mb-2">
+                                <span class="badge bg-light text-secondary rounded-0 border small"
+                                    style="color: #4f7896 !important;">HTML / CSS / JS</span>
+                                <span class="badge bg-light text-secondary rounded-0 border small">Bootstrap /
+                                    RWD</span>
+                            </div>
+                            <h4 class="card-title fs-5 fw-bold mb-3">個人作品集網站</h4>
+                            <p class="card-text text-muted mb-4 small flex-grow-1">
+                                前端網頁設計課程的期末成果。以 HTML、CSS、JavaScript 搭配 Bootstrap，從零打造一個整理學習歷程的個人網站，課程結束後仍持續擴充內容。
+                                <br><strong>‧ 視覺風格：</strong>以米白色調、襯線字體與一致的卡片樣式，建立安靜、有質感的整體風格。
+                                <br><strong>‧ 響應式版面：</strong>運用格線系統，讓桌機、平板與手機都有合適的閱讀版面。
+                                <br><strong>‧ 互動元件：</strong>實作程式碼彈出視窗、圖片輪播與文件線上預覽等功能。
+                            </p>
+                            <div class="project-actions mt-auto pt-2 d-flex gap-2">
+                                <a href="https://youtu.be/FqXxmE-A5wQ" target="_blank"
+                                    class="btn btn-custom-dark btn-sm flex-fill text-center">
+                                    專案介紹影片
+                                </a>
+                                <button type="button" class="btn btn-outline-secondary btn-sm flex-fill"
+                                    data-bs-toggle="modal" data-bs-target="#codeModalFrontend">
+                                    查看關鍵程式碼
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第二排第 2 張：管理學訪談 -->
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="card custom-card h-100 border-0 bg-transparent">
+                        <div class="project-image-wrap h-220">
+                            <img loading="lazy" decoding="async" src="images/958ec635-b771-4ce8-a0f8-ac7e98795930.png"
                                 class="card-img-top card-img-top-fixed" alt="管理學-企業訪談"
                                 style="height: 100%; object-fit: cover;">
                         </div>
                         <div class="card-body project-card-body px-1 d-flex flex-column">
-                            <div class="project-actions d-flex flex-wrap gap-2 mb-2">
+                            <div class="d-flex flex-wrap gap-2 mb-2">
                                 <span class="badge bg-light text-secondary rounded-0 border small"
                                     style="color: #a88d44 !important;">Management</span>
                                 <span class="badge bg-light text-secondary rounded-0 border small">Interview
@@ -288,7 +537,7 @@
                                 本專案針對大型工程服務集團「CTCI
                                 中鼎工程」進行業界同仁的深入實務調研。從前期設定訪談架構、撰寫嚴謹的訪談計劃書，到實際聯繫並深度訪談中鼎工程現職員工，最終將訪談精華、組織運作與管理理論相結合，凝聚產出兼具學術與實務價值的訪談報告書。
                             </p>
-                            <div class="d-flex gap-2 mt-auto pt-2">
+                            <div class="project-actions d-flex gap-2 mt-auto pt-2">
                                 <div class="dropdown flex-fill">
                                     <button class="btn btn-custom-dark btn-sm w-100 dropdown-toggle" type="button"
                                         data-bs-toggle="dropdown">
@@ -296,14 +545,12 @@
                                     </button>
                                     <ul class="dropdown-menu w-100">
                                         <li><button class="dropdown-item"
-                                                onclick="openDoc('https://drive.google.com/file/d/1Y-HEAjwaA15iAi37-bF_HviXaYVcJ3da/preview')">線上預覽</button>
+                                                onclick="openDoc('https://drive.google.com/file/d/1OAFKWQsV7-r9gs1zV19n-B2vRVFZHQgh/preview')">線上預覽</button>
                                         </li>
-                                        <li>
-                                            <a class="dropdown-item" target="_blank"
-                                                href="https://drive.google.com/file/d/1Y-HEAjwaA15iAi37-bF_HviXaYVcJ3da/view?usp=drive_link">
+                                        <li><a class="dropdown-item" target="_blank"
+                                                href="https://drive.google.com/file/d/1OAFKWQsV7-r9gs1zV19n-B2vRVFZHQgh/view?usp=drive_link">
                                                 下載 PDF
-                                            </a>
-                                        </li>
+                                            </a></li>
                                     </ul>
                                 </div>
                                 <div class="dropdown flex-fill">
@@ -313,10 +560,10 @@
                                     </button>
                                     <ul class="dropdown-menu w-100">
                                         <li><button class="dropdown-item"
-                                                onclick="openDoc('https://drive.google.com/file/d/1eDnxEb-q0_BGKR4R49MINhEWZCtbr4XA/preview')">線上預覽</button>
+                                                onclick="openDoc('https://drive.google.com/file/d/16thnEm3tkvrxfEA6Z0fb_pA_vaCgCYnF/preview')">線上預覽</button>
                                         </li>
                                         <li><a class="dropdown-item" target="_blank"
-                                                href="https://drive.google.com/file/d/1eDnxEb-q0_BGKR4R49MINhEWZCtbr4XA/view?usp=drive_link">
+                                                href="https://drive.google.com/file/d/16thnEm3tkvrxfEA6Z0fb_pA_vaCgCYnF/view?usp=drive_link">
                                                 下載 PDF
                                             </a></li>
                                     </ul>
@@ -326,157 +573,102 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6">
-                    <div class="card custom-card h-100 border-0 bg-transparent">
-                        <div class="project-image-wrap h-240">
-                            <img src="images/5f459634-ae3e-4476-85b8-42c8cd570b23.png"
-                                class="card-img-top card-img-top-fixed" alt="創意思考方法-校外參賽"
-                                style="height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="card-body project-card-body px-1 d-flex flex-column">
-                            <div class="d-flex flex-wrap gap-2 mb-2">
-                                <span class="badge bg-light text-secondary rounded-0 border small"
-                                    style="color: #b86b5c !important;">Design Thinking</span>
-                                <span class="badge bg-light text-secondary rounded-0 border small">HealthTech
-                                    Competition</span>
-                            </div>
-                            <h4 class="card-title fs-5 fw-bold mb-3">健康科技盃：獨居長者毫米波雷達生理偵測提案</h4>
-                            <p class="card-text text-muted mb-4 small flex-grow-1">
-                                組隊報名參加「健康科技盃」全國創新競賽。聚焦於孤獨死與獨居長者居家安全痛點，創新提出利用「毫米波雷達技術（Millimeter-Wave
-                                Radar）」的非接觸式防護網方案。在免除隱私疑慮的前提下，實現長者跌倒判定與生命跡象異常的即時主動偵測告警。
-                            </p>
-                            <div class="project-actions mt-auto pt-2">
-                                <div class="dropdown">
-                                    <button class="btn btn-custom-dark btn-sm w-100 dropdown-toggle" type="button"
-                                        data-bs-toggle="dropdown">
-                                        參賽企劃書
-                                    </button>
-                                    <ul class="dropdown-menu w-100">
-                                        <li>
-                                            <button class="dropdown-item"
-                                                onclick="openDoc('https://drive.google.com/file/d/1lCFER15H63RSXrTh1rOy-r8PrSwGTEq-/preview')">
-                                                線上預覽
-                                            </button>
-                                        </li>
-
-                                        <li><a class="dropdown-item" target="_blank"
-                                                href="https://drive.google.com/file/d/1lCFER15H63RSXrTh1rOy-r8PrSwGTEq-/view?usp=drive_link/export?format=pdf">
-                                                下載 PDF
-                                            </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
+        </div>
+
+        <!-- 導向比賽經歷頁 -->
+        <div class="text-center pt-4">
+            <p class="text-muted small mb-3" style="letter-spacing: 0.5px;">除了課程成果，也歡迎看看我的校外競賽經歷</p>
+            <a href="competitions.html" class="btn btn-custom-outline btn-sm px-4" style="min-height: 42px;">
+                前往比賽經歷 →
+            </a>
         </div>
 
     </main>
 
     <div class="modal fade" id="petImageModal" tabindex="-1" aria-labelledby="petImageModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content bg-dark text-white">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title fw-bold" id="petImageModalLabel">寵物美容院預約管理系統 - 介面導覽</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+            <div class="modal-content photo-modal">
+                <div class="modal-header border-0 pb-0">
+                    <div>
+                        <span class="photo-modal-en">Interface Walkthrough</span>
+                        <h5 class="modal-title fw-bold" id="petImageModalLabel">寵物美容院預約管理系統 ‧ 介面導覽</h5>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body p-3">
-
-                    <div id="petImageCarousel" class="carousel slide" data-bs-ride="false">
-
-                        <div class="carousel-indicators" style="margin-bottom: -20px;">
-                            <button type="button" data-bs-target="#petImageCarousel" data-bs-slide-to="0" class="active"
-                                aria-current="true"></button>
-                            <button type="button" data-bs-target="#petImageCarousel" data-bs-slide-to="1"></button>
-                            <button type="button" data-bs-target="#petImageCarousel" data-bs-slide-to="2"></button>
-                            <button type="button" data-bs-target="#petImageCarousel" data-bs-slide-to="3"></button>
-                            <button type="button" data-bs-target="#petImageCarousel" data-bs-slide-to="4"></button>
-                            <button type="button" data-bs-target="#petImageCarousel" data-bs-slide-to="5"></button>
-                            <button type="button" data-bs-target="#petImageCarousel" data-bs-slide-to="6"></button>
-                            <button type="button" data-bs-target="#petImageCarousel" data-bs-slide-to="7"></button>
-                            <button type="button" data-bs-target="#petImageCarousel" data-bs-slide-to="8"></button>
-                            <button type="button" data-bs-target="#petImageCarousel" data-bs-slide-to="9"></button>
-                            <button type="button" data-bs-target="#petImageCarousel" data-bs-slide-to="10"></button>
-                            <button type="button" data-bs-target="#petImageCarousel" data-bs-slide-to="11"></button>
-                            <button type="button" data-bs-target="#petImageCarousel" data-bs-slide-to="12"></button>
-                            <button type="button" data-bs-target="#petImageCarousel" data-bs-slide-to="13"></button>
-                        </div>
-
+                <div class="modal-body pt-3">
+                    <!-- 系統截圖用手動切換，方便慢慢看每個畫面 -->
+                    <div id="petImageCarousel" class="carousel slide photo-carousel" data-bs-ride="false">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="images/1.png" class="d-block w-100 img-fluid rounded" alt="操作畫面 1">
-                                <div class="text-center mt-2 small text-light">1 / 14</div>
+                                <img src="images/1.png" class="photo-slide" alt="寵物美容院預約系統操作畫面 1" loading="lazy" decoding="async">
+                                <p class="photo-count">1 / 14</p>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/2.png" class="d-block w-100 img-fluid rounded" alt="操作畫面 2">
-                                <div class="text-center mt-2 small text-light">2 / 14</div>
+                                <img src="images/2.png" class="photo-slide" alt="寵物美容院預約系統操作畫面 2" loading="lazy" decoding="async">
+                                <p class="photo-count">2 / 14</p>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/3.png" class="d-block w-100 img-fluid rounded" alt="操作畫面 3">
-                                <div class="text-center mt-2 small text-light">3 / 14</div>
+                                <img src="images/3.png" class="photo-slide" alt="寵物美容院預約系統操作畫面 3" loading="lazy" decoding="async">
+                                <p class="photo-count">3 / 14</p>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/4.png" class="d-block w-100 img-fluid rounded" alt="操作畫面 4">
-                                <div class="text-center mt-2 small text-light">4 / 14</div>
+                                <img src="images/4.png" class="photo-slide" alt="寵物美容院預約系統操作畫面 4" loading="lazy" decoding="async">
+                                <p class="photo-count">4 / 14</p>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/5.png" class="d-block w-100 img-fluid rounded" alt="操作畫面 5">
-                                <div class="text-center mt-2 small text-light">5 / 14</div>
+                                <img src="images/5.png" class="photo-slide" alt="寵物美容院預約系統操作畫面 5" loading="lazy" decoding="async">
+                                <p class="photo-count">5 / 14</p>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/6.png" class="d-block w-100 img-fluid rounded" alt="操作畫面 6">
-                                <div class="text-center mt-2 small text-light">6 / 14</div>
+                                <img src="images/6.png" class="photo-slide" alt="寵物美容院預約系統操作畫面 6" loading="lazy" decoding="async">
+                                <p class="photo-count">6 / 14</p>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/7.png" class="d-block w-100 img-fluid rounded" alt="操作畫面 7">
-                                <div class="text-center mt-2 small text-light">7 / 14</div>
+                                <img src="images/7.png" class="photo-slide" alt="寵物美容院預約系統操作畫面 7" loading="lazy" decoding="async">
+                                <p class="photo-count">7 / 14</p>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/8.png" class="d-block w-100 img-fluid rounded" alt="操作畫面 8">
-                                <div class="text-center mt-2 small text-light">8 / 14</div>
+                                <img src="images/8.png" class="photo-slide" alt="寵物美容院預約系統操作畫面 8" loading="lazy" decoding="async">
+                                <p class="photo-count">8 / 14</p>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/9.png" class="d-block w-100 img-fluid rounded" alt="操作畫面 9">
-                                <div class="text-center mt-2 small text-light">9 / 14</div>
+                                <img src="images/9.png" class="photo-slide" alt="寵物美容院預約系統操作畫面 9" loading="lazy" decoding="async">
+                                <p class="photo-count">9 / 14</p>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/10.png" class="d-block w-100 img-fluid rounded" alt="操作畫面 10">
-                                <div class="text-center mt-2 small text-light">10 / 14</div>
+                                <img src="images/10.png" class="photo-slide" alt="寵物美容院預約系統操作畫面 10" loading="lazy" decoding="async">
+                                <p class="photo-count">10 / 14</p>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/11.png" class="d-block w-100 img-fluid rounded" alt="操作畫面 11">
-                                <div class="text-center mt-2 small text-light">11 / 14</div>
+                                <img src="images/11.png" class="photo-slide" alt="寵物美容院預約系統操作畫面 11" loading="lazy" decoding="async">
+                                <p class="photo-count">11 / 14</p>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/12.png" class="d-block w-100 img-fluid rounded" alt="操作畫面 12">
-                                <div class="text-center mt-2 small text-light">12 / 14</div>
+                                <img src="images/12.png" class="photo-slide" alt="寵物美容院預約系統操作畫面 12" loading="lazy" decoding="async">
+                                <p class="photo-count">12 / 14</p>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/13.png" class="d-block w-100 img-fluid rounded" alt="操作畫面 13">
-                                <div class="text-center mt-2 small text-light">13 / 14</div>
+                                <img src="images/13.png" class="photo-slide" alt="寵物美容院預約系統操作畫面 13" loading="lazy" decoding="async">
+                                <p class="photo-count">13 / 14</p>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/14.png" class="d-block w-100 img-fluid rounded" alt="操作畫面 14">
-                                <div class="text-center mt-2 small text-light">14 / 14</div>
+                                <img src="images/14.png" class="photo-slide" alt="寵物美容院預約系統操作畫面 14" loading="lazy" decoding="async">
+                                <p class="photo-count">14 / 14</p>
                             </div>
                         </div>
-
                         <button class="carousel-control-prev" type="button" data-bs-target="#petImageCarousel"
                             data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
+                            <span class="visually-hidden">上一張</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#petImageCarousel"
                             data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
+                            <span class="visually-hidden">下一張</span>
                         </button>
                     </div>
-
                 </div>
-                <div class="modal-footer border-0 pt-0 pb-4"></div>
             </div>
         </div>
     </div>
@@ -485,11 +677,11 @@
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content bg-dark text-light">
                 <div class="modal-header border-secondary">
-                    <h5 class="modal-title">核心程式碼展示：成績管理邏輯</h5>
+                    <h5 class="modal-title">核心程式碼展示：資料庫連線與成績查詢</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <p class="text-secondary small mb-3">以下為此專案中負責處理權限驗證與成績更新的核心邏輯：</p>
+                    <p class="text-secondary small mb-3">以下節錄專案中的資料庫連線、成績查詢與畫面更新邏輯：</p>
                     <pre class="bg-black p-3 rounded text-success"><code>
 /* 1. 非同步資料庫執行機制 */
 sqlService = Executors.newSingleThreadExecutor();
@@ -503,7 +695,7 @@ String sqlStatement = "SELECT b.StudentName, c.CourseName, g.Grade " +
                       "JOIN basis b ON g.StudentID = b.StudentID " +
                       "JOIN course c ON g.CourseID = c.CourseID " +
                       "WHERE g.StudentID = ?";
-ArrayList<String> parameters = new ArrayList<>();
+ArrayList&lt;String&gt; parameters = new ArrayList&lt;&gt;();
 parameters.add(getID);
 ResultSet rs = db.sqlQuery(sqlStatement, parameters);
 
@@ -531,51 +723,101 @@ runOnUiThread(() -> {
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <p class="text-secondary small mb-3">展示如何透過網路爬蟲技術抓取新聞內容並進行關鍵字擷取：</p>
+                    <p class="text-secondary small mb-3">以下節錄專案中抓取新聞、去除重複資料，並以 LSA 演算法產生摘要的程式碼：</p>
                     <pre class="bg-black p-3 rounded text-info"><code>
-/* 1. 網路請求與網頁解析（爬蟲核心） */
-// 使用 requests 模擬瀏覽器行為，避免被擋。
-// 並利用 BeautifulSoup 進行結構化資料擷取。
+# ===== 1. 網路請求與網頁解析（爬蟲核心） =====
+# 使用 requests 模擬瀏覽器行為，避免被擋。
+# 並利用 BeautifulSoup 進行結構化資料擷取。
 res = requests.get(url, headers=headers)
 soup = BeautifulSoup(res.text, "html.parser")
-items = soup.select("ul li a") // 透過 CSS Selector 定位新聞列表
+items = soup.select("ul li a")  # 透過 CSS Selector 定位新聞列表
 
-/* 2. 資料清洗與去重（穩健性邏輯） */
-// 使用 set 結構確保資料唯一，並篩選有效的新聞連結
+# ===== 2. 資料清洗與去重（穩健性邏輯） =====
+# 使用 set 結構確保資料唯一，並篩選有效的新聞連結
 seen_links = set()
-if "3c.ltn.com.tw/news" in link: 
+if "3c.ltn.com.tw/news" in link:
     if link not in seen_links:
         seen_links.add(link)
 
-/* 3. LSA 潛在語意摘要（NLP 亮點） */
-// 利用 Sumy 框架實現自動化摘要
+# ===== 3. LSA 潛在語意摘要 =====
+# 利用 Sumy 框架實現自動化摘要
 parser = PlaintextParser.from_string(article_text, Tokenizer(LANGUAGE))
 summarizer = LsaSummarizer(Stemmer(LANGUAGE))
-summarizer.stop_words = get_stop_words(LANGUAGE) // 過濾無意義詞彙
+summarizer.stop_words = get_stop_words(LANGUAGE)  # 過濾無意義詞彙
                 </code></pre>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="videoModalNews" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content bg-dark">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title text-white">專案介紹：自動化新聞爬蟲系統</h5>
+    <div class="modal fade" id="codeModalFrontend" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title">核心程式碼展示：響應式版面與自訂樣式</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body p-0">
-                    <div class="ratio ratio-16x9">
-                        <video id="newsVideo" controls style="width: 100%;">
-                            <source src="images/intro.mp4" type="video/mp4">
-                            您的瀏覽器不支援影片播放。
-                        </video>
-                    </div>
+                <div class="modal-body">
+                    <p class="text-secondary small mb-3">節錄自網站首頁，展示如何以 Bootstrap 格線與 Flex 工具建構響應式版面，並用 CSS 偽元素繪製時間軸：</p>
+                    <pre class="bg-black p-3 rounded text-warning"><code>
+&lt;!-- ===== 1. 響應式導覽列（HTML + Bootstrap） ===== --&gt;
+&lt;!-- 桌機橫向展開；螢幕變窄時自動收合成漢堡選單 --&gt;
+&lt;nav class="navbar navbar-expand-lg fixed-top custom-navbar navbar-light"&gt;
+    &lt;button class="navbar-toggler border-0" type="button"
+        data-bs-toggle="collapse" data-bs-target="#navbarNav"&gt;
+        &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class="collapse navbar-collapse" id="navbarNav"&gt;
+        &lt;ul class="navbar-nav ms-auto"&gt; ... &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;
+
+&lt;!-- ===== 2. 技能區塊的 RWD 格線（HTML + Bootstrap） ===== --&gt;
+&lt;!-- 手機一排 2 張（col-6）、平板以上一排 4 張（col-md-3） --&gt;
+&lt;div class="row g-4 justify-content-center"&gt;
+    &lt;div class="col-6 col-md-3 text-center"&gt;
+        &lt;div class="p-3 bg-white border rounded-1 h-100 shadow-sm"
+            style="border-top: 3px solid #5b849e !important;"&gt;
+            &lt;span class="badge skill-badge html-badge w-100"&gt;HTML&lt;/span&gt;
+            &lt;span class="badge skill-badge css-badge w-100"&gt;CSS&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    ...
+&lt;/div&gt;
+
+/* ===== 3. 教育背景時間軸（CSS 偽元素） ===== */
+/* 用左邊框畫出時間線，再以 ::before 畫出每個節點的圓點，不需額外圖片 */
+.timeline-item {
+    position: relative;
+    border-left: 1px solid #c4b9ac;
+    padding-left: 30px;
+}
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 8px;
+    width: 11px;
+    height: 11px;
+    background-color: #a38a68;
+    border-radius: 50%;
+}
+
+&lt;!-- ===== 4. 語言能力卡片的響應式排列（Bootstrap Flex 工具類別） ===== --&gt;
+&lt;!-- 手機上下排列（flex-column），寬螢幕改為左右並排（flex-sm-row） --&gt;
+&lt;div class="p-4 bg-white d-flex flex-column flex-sm-row
+            justify-content-between align-items-sm-center shadow-sm"&gt;
+    &lt;div&gt; TOEIC 多益英語測驗 ... &lt;/div&gt;
+    &lt;div class="text-start text-sm-end"&gt;
+        &lt;span class="badge rounded-0"&gt;綠色證書&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                </code></pre>
                 </div>
             </div>
         </div>
     </div>
+
 
     <div class="modal fade" id="docViewerModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">
@@ -602,20 +844,23 @@ summarizer.stop_words = get_stop_words(LANGUAGE) // 過濾無意義詞彙
                 </div>
                 <div class="col-lg-5 footer-info-area">
                     <div class="footer-info-box">
-                        <span class="footer-info-title text-center text-lg-start d-block mb-3">CONTACT ME</span>
+                        <span class="footer-info-title text-center text-lg-start d-block mb-3">EXPLORE</span>
                         <ul class="list-unstyled footer-contact-list">
                             <li class="d-flex align-items-center justify-content-center justify-content-lg-start mb-2">
-                                <span class="contact-label">Email ‧</span>
-                                <a href="mailto:your.email@example.com" class="contact-link">your.email@example.com</a>
+                                <span class="contact-label">About ‧</span>
+                                <a href="index.html" class="contact-link">關於我</a>
                             </li>
                             <li class="d-flex align-items-center justify-content-center justify-content-lg-start mb-2">
-                                <span class="contact-label">Phone ‧</span>
-                                <span class="contact-text">0000-000-000</span>
+                                <span class="contact-label">Works ‧</span>
+                                <a href="projects.html" class="contact-link">作品集</a>
                             </li>
                             <li class="d-flex align-items-center justify-content-center justify-content-lg-start mb-2">
-                                <span class="contact-label">GitHub ‧</span>
-                                <a href="https://github.com" target="_blank"
-                                    class="contact-link">github.com/yourusername</a>
+                                <span class="contact-label">Competitions ‧</span>
+                                <a href="competitions.html" class="contact-link">比賽經歷</a>
+                            </li>
+                            <li class="d-flex align-items-center justify-content-center justify-content-lg-start mb-2">
+                                <span class="contact-label">Moments ‧</span>
+                                <a href="gallery.html" class="contact-link">活動照片</a>
                             </li>
                         </ul>
                     </div>
@@ -628,41 +873,48 @@ summarizer.stop_words = get_stop_words(LANGUAGE) // 過濾無意義詞彙
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var videoModal = document.getElementById('videoModalNews');
-            var video = document.getElementById('newsVideo');
-
-            if (videoModal && video) {
-                // 當 Modal 開啟時
-                videoModal.addEventListener('show.bs.modal', function () {
-                    video.muted = true;    // 強制靜音
-                    video.play();         // 開始播放
-                });
-
-                // 當 Modal 關閉時
-                videoModal.addEventListener('hidden.bs.modal', function () {
-                    video.pause();        // 暫停播放
-                    video.currentTime = 0; // 將影片重置到開頭
-                });
-            }
-        });
-    </script>
 
     <script>
         function openDoc(url) {
             const frame = document.getElementById('pdfViewer');
-            frame.src = url; // 設定 iframe 的網址
-
-            // 呼叫 Bootstrap 顯示 Modal
-            var myModal = new bootstrap.Modal(document.getElementById('docViewerModal'));
-            myModal.show();
+            frame.src = url;
+            bootstrap.Modal.getOrCreateInstance(document.getElementById('docViewerModal')).show();
         }
 
-        // 關閉 Modal 時清除 iframe 內容，避免資源浪費
         document.getElementById('docViewerModal').addEventListener('hidden.bs.modal', function () {
             document.getElementById('pdfViewer').src = "";
         });
+
+        // 寵物美容院截圖：關閉視窗後回到第 1 張，下次打開從頭看
+        document.getElementById('petImageModal').addEventListener('hidden.bs.modal', function () {
+            bootstrap.Carousel.getOrCreateInstance(document.getElementById('petImageCarousel')).to(0);
+        });
+    </script>
+    <script>
+        // ===== 捲動淡入：同一排的卡片依序出現，只播一次 =====
+        (function () {
+            const els = document.querySelectorAll('.reveal');
+            els.forEach(function (el) {
+                const siblings = Array.prototype.filter.call(el.parentElement.children, function (c) {
+                    return c.classList.contains('reveal');
+                });
+                const i = siblings.indexOf(el);
+                if (i > 0) el.style.setProperty('--reveal-delay', Math.min(i * 0.08, 0.4) + 's');
+            });
+            if (!('IntersectionObserver' in window)) {
+                els.forEach(function (el) { el.classList.add('in-view'); });
+                return;
+            }
+            const io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            els.forEach(function (el) { io.observe(el); });
+        })();
     </script>
 </body>
 

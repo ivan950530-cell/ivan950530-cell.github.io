@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>比賽經歷 | 鍾友恆</title>
+    <meta name="description" content="校外創新競賽經歷：苗青創想家黑客松（最佳潛力星）、永豐金控商業競賽、健康科技盃。">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="比賽經歷 | 鍾友恆">
+    <meta property="og:description" content="校外創新競賽經歷：苗青創想家黑客松（最佳潛力星）、永豐金控商業競賽、健康科技盃。">
+    <meta property="og:url" content="https://ivan950530-cell.github.io/competitions.html">
+    <meta property="og:image" content="https://ivan950530-cell.github.io/images/frontend-cover.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+TC:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>document.documentElement.classList.add('js-anim');</script>
+
+    <style>
+        /* ===== Competitions Page：沿用作品集頁卡片樣式 ===== */
+
+        .card-img-top-fixed {
+            width: 100%;
+            object-fit: cover;
+            display: block;
+            height: 100%;
+            transition: transform 0.45s ease, opacity 0.35s ease;
+        }
+
+        .custom-card {
+            border: 1px solid #e8e2da !important;
+            background: #ffffff !important;
+            box-shadow: 0 4px 20px rgba(163, 138, 104, 0.03);
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        .custom-card:hover {
+            transform: translateY(-6px);
+            border-color: #c4b9ac !important;
+            box-shadow: 0 15px 35px rgba(110, 95, 80, 0.08);
+        }
+
+        .custom-card:hover .card-img-top-fixed {
+            transform: scale(1.04);
+            opacity: 0.92;
+        }
+
+        .project-image-wrap {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+            background: #faf8f5;
+            padding: 12px;
+            height: 240px;
+        }
+
+        @media (min-width: 768px) {
+            .project-image-wrap {
+                height: 100%;
+                min-height: 300px;
+            }
+
+            .card-horizontal .project-card-body {
+                padding: 1.8rem 2rem 1.6rem;
+            }
+        }
+
+        .project-card-body {
+            padding: 1.4rem 0.35rem 0.2rem;
+        }
+
+        .project-card-body .card-title {
+            line-height: 1.55;
+            margin-bottom: 0.9rem;
+        }
+
+        .project-card-body .card-text {
+            line-height: 1.85;
+            font-size: 0.9rem;
+            color: #7a7165 !important;
+        }
+
+        .project-card-body .badge {
+            background: #f7f3ee !important;
+            border: 1px solid #ddd3c8 !important;
+            border-radius: 0 !important;
+            font-weight: 500;
+            padding: 6px 10px;
+            letter-spacing: 0.3px;
+        }
+
+        .project-actions .btn,
+        .project-actions .dropdown .btn {
+            min-height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-actions .dropdown {
+            flex: 1 1 0;
+        }
+
+        /* 比賽資訊列（年份 / 主辦 / 成果） */
+        .comp-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 1.4rem;
+            font-size: 0.82rem;
+            color: #9a8f82;
+            letter-spacing: 0.4px;
+            border-top: 1px solid #eee8e0;
+            border-bottom: 1px solid #eee8e0;
+            padding: 0.6rem 0;
+            margin-bottom: 1rem;
+        }
+
+        .comp-meta span strong {
+            color: #5c544a;
+            font-weight: 600;
+            margin-right: 0.3rem;
+        }
+
+        /* 年份標記 */
+        .comp-year {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            line-height: 1;
+            color: #c4b9ac;
+            letter-spacing: 1px;
+        }
+
+        /* ===== 活動照片輪播視窗 ===== */
+        .photo-modal {
+            background: #faf8f5;
+            border: 1px solid #e8e2da;
+            border-radius: 0;
+        }
+
+        .photo-modal-en {
+            display: block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #9a8f82;
+        }
+
+        .photo-modal .modal-title {
+            color: #332d26;
+        }
+
+        .photo-slide {
+            display: block;
+            width: 100%;
+            height: 60vh;
+            max-height: 520px;
+            object-fit: contain;
+            background: #efe9e1;
+        }
+
+
+        /* 左右箭頭改成深色圓底，在淺色照片上也看得清楚 */
+        #miaoliCarousel .carousel-control-prev,
+        #miaoliCarousel .carousel-control-next {
+            width: 48px;
+            height: 48px;
+            top: calc(min(60vh, 520px) / 2 - 24px);
+            bottom: auto;
+            margin: 0 10px;
+            background: rgba(54, 60, 74, 0.55);
+            border-radius: 50%;
+            opacity: 0.85;
+        }
+
+        #miaoliCarousel .carousel-control-prev-icon,
+        #miaoliCarousel .carousel-control-next-icon {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        /* ===== 可點擊的封面（點擊開啟照片輪播） ===== */
+        .cover-clickable {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cover-hint {
+            position: absolute;
+            right: 24px;
+            bottom: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            font-size: 0.78rem;
+            letter-spacing: 0.8px;
+            color: #ffffff;
+            background: rgba(54, 60, 74, 0.72);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            opacity: 0.85;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+        }
+
+        .cover-clickable:hover .cover-hint,
+        .cover-clickable:focus-visible .cover-hint {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .cover-clickable:focus-visible {
+            outline: 2px solid #a38a68;
+            outline-offset: 2px;
+        }
+
+        /* ===== 捲動淡入：卡片進入畫面時由下往上淡入 ===== */
+        .js-anim .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            transition-delay: var(--reveal-delay, 0s);
+        }
+
+        .js-anim .reveal.in-view {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .js-anim .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top custom-navbar navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><span class="brand-text">Portfolio.</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">關於我</a></li>
+                    <li class="nav-item"><a class="nav-link" href="projects.html">作品集</a></li>
+                    <li class="nav-item"><a class="nav-link" href="competitions.html">比賽經歷</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">活動照片</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="container" style="padding-top: 150px; padding-bottom: 1rem;">
+        <div class="text-center mb-4">
+            <span class="section-subtitle-en">Competitions</span>
+            <h2 class="section-title">比賽經歷</h2>
+            <div class="hero-divider-left mx-auto my-3"></div>
+            <p class="text-muted small mx-auto" style="max-width: 500px; letter-spacing: 0.5px;">
+                走出課堂，把所學帶進真實問題。以下整理我參與的校外創新競賽，從發掘痛點、組隊分工到提案企劃，
+                記錄每一次將想法落實成解決方案的過程。
+            </p>
+        </div>
+    </section>
+
+    <main class="container pb-5 mb-5">
+
+        <div class="my-5">
+            <div class="border-start border-2 border-dark ps-3 mb-4">
+                <span class="text-uppercase small text-muted fw-bold"
+                    style="font-family: 'Cormorant Garamond', serif; letter-spacing: 2px;">Innovation Competitions</span>
+                <h3 class="fs-5 fw-bold text-dark mt-1">創新提案競賽</h3>
+            </div>
+
+            <div class="row g-4">
+
+                <!-- ===== 比賽：2026 苗青創想家黑客松 ===== -->
+                <div class="col-12 reveal">
+                    <div class="card custom-card card-horizontal border-0 bg-transparent">
+                        <div class="row g-0 h-100">
+                            <div class="col-md-5">
+                                <!-- 封面使用第 1 張：頒獎合照；點擊封面同樣會開啟活動照片輪播 -->
+                                <div class="project-image-wrap cover-clickable" role="button" tabindex="0"
+                                    aria-label="查看苗青創想家活動照片" data-bs-toggle="modal"
+                                    data-bs-target="#miaoliPhotoModal">
+                                    <img src="images/S__487473157_0.jpg"
+                                        class="card-img-top card-img-top-fixed" alt="苗青創想家黑客松頒獎合照"
+                                        style="height: 100%; object-fit: cover;">
+                                    <span class="cover-hint">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            aria-hidden="true">
+                                            <rect x="3" y="5" width="18" height="14" rx="1"></rect>
+                                            <circle cx="9" cy="10" r="1.6"></circle>
+                                            <path d="M21 16l-5-5-8 8"></path>
+                                        </svg>
+                                        查看照片 4 張
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body project-card-body px-1 d-flex flex-column h-100">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <span class="badge bg-light text-secondary rounded-0 border small"
+                                                style="color: #6b8a4e !important;">Hackathon</span>
+                                            <span class="badge bg-light text-secondary rounded-0 border small">AgriTech
+                                                / Data</span>
+                                        </div>
+                                        <span class="comp-year">2026</span>
+                                    </div>
+                                    <h4 class="card-title fs-5 fw-bold mb-3">苗青創想家黑客松：客庄作田・智算未來</h4>
+
+                                    <div class="comp-meta">
+                                        <span><strong>團隊</strong>四個北仔（4 人）</span>
+                                        <span><strong>負責</strong>提案發想、簡報製作、上台發表</span>
+                                        <span><strong>成果</strong>最佳潛力星</span>
+                                    </div>
+
+                                    <p class="card-text text-muted mb-4 small flex-grow-1">
+                                        以「促進苗栗地方經濟」為題，針對苗栗特產作物價格波動、農民難以決定種植品項的痛點，提出結合價格預測與種植情境模擬的農民決策輔助系統。
+                                        農民輸入耕地面積、適種作物與種植條件後，系統即依不同風險偏好提供「穩健型」、「期望型」等種植策略建議，協助在地農業做出更有依據的決策。
+                                    </p>
+                                    <div class="project-actions mt-auto pt-2 d-flex flex-wrap gap-2">
+                                        <div class="dropdown flex-fill">
+                                            <button class="btn btn-custom-dark btn-sm w-100 dropdown-toggle"
+                                                type="button" data-bs-toggle="dropdown">
+                                                企劃書
+                                            </button>
+                                            <ul class="dropdown-menu w-100">
+                                                <li><button class="dropdown-item"
+                                                        onclick="openDoc('https://drive.google.com/file/d/1qwrzZp8D9O4UaR4CTSw-onZms0V3BTl8/preview')">
+                                                        線上預覽
+                                                    </button></li>
+                                                <li><a class="dropdown-item" target="_blank"
+                                                        href="https://drive.google.com/file/d/1qwrzZp8D9O4UaR4CTSw-onZms0V3BTl8/view?usp=drive_link">
+                                                        下載 PDF
+                                                    </a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="dropdown flex-fill">
+                                            <button class="btn btn-custom-outline btn-sm w-100 dropdown-toggle"
+                                                type="button" data-bs-toggle="dropdown">
+                                                提案簡報
+                                            </button>
+                                            <ul class="dropdown-menu w-100">
+                                                <li><button class="dropdown-item"
+                                                        onclick="openDoc('https://drive.google.com/file/d/1N09ZKEQ7EazIa9l2NQwKhMkckpmeTT-J/preview')">
+                                                        線上預覽
+                                                    </button></li>
+                                                <li><a class="dropdown-item" target="_blank"
+                                                        href="https://docs.google.com/presentation/d/1N09ZKEQ7EazIa9l2NQwKhMkckpmeTT-J/edit?usp=drive_link">
+                                                        開啟原始簡報
+                                                    </a></li>
+                                            </ul>
+                                        </div>
+                                        <button type="button" class="btn btn-custom-outline btn-sm flex-fill"
+                                            style="flex: 1 1 0;" data-bs-toggle="modal" data-bs-target="#miaoliPhotoModal">
+                                            活動照片（4 張）
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== 比賽：第五屆永豐金控商業競賽 ===== -->
+                <div class="col-12 reveal">
+                    <div class="card custom-card card-horizontal border-0 bg-transparent">
+                        <div class="row g-0 h-100">
+                            <div class="col-md-5">
+                                <div class="project-image-wrap">
+                                    <img loading="lazy" decoding="async" src="images/sinopac-competition.jpg"
+                                        class="card-img-top card-img-top-fixed" alt="永豐金控商業競賽參賽"
+                                        style="height: 100%; object-fit: cover;">
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body project-card-body px-1 d-flex flex-column h-100">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <span class="badge bg-light text-secondary rounded-0 border small"
+                                                style="color: #4a6a8a !important;">Business Case</span>
+                                            <span class="badge bg-light text-secondary rounded-0 border small">FinTech / ESG</span>
+                                        </div>
+                                        <span class="comp-year">2026</span>
+                                    </div>
+                                    <h4 class="card-title fs-5 fw-bold mb-3">第五屆永豐金控商業競賽：SEIE 2.0 永續金融生態圈</h4>
+
+                                    <div class="comp-meta">
+                                        <span><strong>團隊</strong>綠金數據實驗室 Green-Fin Data Lab（4 人）</span>
+                                        <span><strong>負責</strong>企劃書文件編輯</span>
+                                    </div>
+
+                                    <p class="card-text text-muted mb-4 small flex-grow-1">
+                                        年輕投資人關心永續，卻缺少把理念化為行動的工具。本提案串接數位帳戶與證券 App 的數據，以「消費 ➔ 評鑑 ➔ 投資」三段式閉環，讓 ESG 成為可操作的理財行為。
+                                        <br><strong>‧ 消費端：</strong>升級個人碳帳戶，綠色消費可獲得永續點數，點數僅能折抵投資手續費，引導存款戶跨入投資。
+                                        <br><strong>‧ 決策端：</strong>於下單介面嵌入 ESG 智慧雷達，以 A+ 至 C 級評等、降評即時推播與 GenAI 白話摘要降低漂綠焦慮。
+                                        <br><strong>‧ 投資端：</strong>智能理財升級為「風險 × 報酬 × ESG」三維度再平衡，企業爆發治理事件時提出換股建議，由用戶一鍵確認。
+                                    </p>
+                                    <div class="project-actions mt-auto pt-2">
+                                        <div class="dropdown">
+                                            <button class="btn btn-custom-dark btn-sm w-100 dropdown-toggle"
+                                                type="button" data-bs-toggle="dropdown">
+                                                參賽企劃書
+                                            </button>
+                                            <ul class="dropdown-menu w-100">
+                                                <li><button class="dropdown-item"
+                                                        onclick="openDoc('https://drive.google.com/file/d/18W3V0gZzIhDRUOanysjcd7XpmyJi3dH3/preview')">
+                                                        線上預覽
+                                                    </button></li>
+                                                <li><a class="dropdown-item" target="_blank"
+                                                        href="https://drive.google.com/file/d/18W3V0gZzIhDRUOanysjcd7XpmyJi3dH3/view?usp=drive_link">
+                                                        下載 PDF
+                                                    </a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== 比賽：健康科技盃 ===== -->
+                <div class="col-12 reveal">
+                    <div class="card custom-card card-horizontal border-0 bg-transparent">
+                        <div class="row g-0 h-100">
+                            <div class="col-md-5">
+                                <div class="project-image-wrap">
+                                    <img loading="lazy" decoding="async" src="images/5f459634-ae3e-4476-85b8-42c8cd570b23.png"
+                                        class="card-img-top card-img-top-fixed" alt="健康科技盃參賽"
+                                        style="height: 100%; object-fit: cover;">
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body project-card-body px-1 d-flex flex-column h-100">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <span class="badge bg-light text-secondary rounded-0 border small"
+                                                style="color: #b86b5c !important;">Design Thinking</span>
+                                            <span class="badge bg-light text-secondary rounded-0 border small">HealthTech
+                                                Competition</span>
+                                        </div>
+                                        <span class="comp-year">2026</span>
+                                    </div>
+                                    <h4 class="card-title fs-5 fw-bold mb-3">健康科技盃：獨居長者毫米波雷達生理偵測提案</h4>
+
+                                    <div class="comp-meta">
+                                        <span><strong>競賽類型</strong>全國創新競賽</span>
+                                        <span><strong>參賽形式</strong>組隊提案</span>
+                                    </div>
+
+                                    <p class="card-text text-muted mb-4 small flex-grow-1">
+                                        獨居長者在家跌倒或身體出狀況時，常常沒有人能及時發現。我們提出以毫米波雷達打造的居家安全偵測方案：
+                                        <br><strong>‧ 不需穿戴：</strong>長者不用配戴任何裝置，日常生活不受影響。
+                                        <br><strong>‧ 保護隱私：</strong>雷達只偵測動作與生命徵象，不拍攝任何影像。
+                                        <br><strong>‧ 即時警示：</strong>偵測到跌倒或生命徵象異常時，立即發出警示。
+                                    </p>
+                                    <div class="project-actions mt-auto pt-2">
+                                        <div class="dropdown">
+                                            <button class="btn btn-custom-dark btn-sm w-100 dropdown-toggle"
+                                                type="button" data-bs-toggle="dropdown">
+                                                參賽企劃書
+                                            </button>
+                                            <ul class="dropdown-menu w-100">
+                                                <li><button class="dropdown-item"
+                                                        onclick="openDoc('https://drive.google.com/file/d/1a6sNl3fIG_mm3Z7wbBFcn4O0JBTAVqgU/preview')">
+                                                        線上預覽
+                                                    </button></li>
+                                                <li><a class="dropdown-item" target="_blank"
+                                                        href="https://drive.google.com/file/d/1a6sNl3fIG_mm3Z7wbBFcn4O0JBTAVqgU/view?usp=drive_link">
+                                                        下載 PDF
+                                                    </a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--
+                ===== 新增比賽時，複製上方「比賽 01」整個 <div class="col-12"> ... </div> 區塊貼在這裡，
+                再修改圖片、年份、badge、標題、comp-meta 與連結即可 =====
+                -->
+
+            </div>
+        </div>
+
+    </main>
+
+    <!--
+    ===== 苗青創想家：活動照片輪播 =====
+    照片直接放在 images/ 資料夾
+      01 頒獎合照（同時也是卡片封面，換照片時封面的路徑也要一起改）
+      02 上台發表
+      03 團隊討論 / 實作過程
+      04 獎狀特寫或簡報關鍵頁
+    -->
+    <div class="modal fade" id="miaoliPhotoModal" tabindex="-1" aria-labelledby="miaoliPhotoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content photo-modal">
+                <div class="modal-header border-0 pb-0">
+                    <div>
+                        <span class="photo-modal-en">Miaoli Youth Hackathon 2026</span>
+                        <h5 class="modal-title fw-bold" id="miaoliPhotoLabel">苗青創想家黑客松 ‧ 活動照片</h5>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pt-3">
+                    <div id="miaoliCarousel" class="carousel slide carousel-fade" data-bs-interval="4000" data-bs-pause="hover">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img loading="lazy" decoding="async" src="images/S__487473157_0.jpg" class="photo-slide" alt="頒獎合照">
+                            </div>
+                            <div class="carousel-item">
+                                <img loading="lazy" decoding="async" src="images/S__487473156_0.jpg" class="photo-slide" alt="上台發表">
+                            </div>
+                            <div class="carousel-item">
+                                <img loading="lazy" decoding="async" src="images/9D933E59-EE9A-4A28-B0CB-D6E0C2DE1459.jpg" class="photo-slide" alt="團隊討論">
+                            </div>
+                            <div class="carousel-item">
+                                <img loading="lazy" decoding="async" src="images/S__487473160_0.jpg" class="photo-slide" alt="獎狀特寫">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#miaoliCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">上一張</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#miaoliCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">下一張</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 文件預覽 Modal -->
+    <div class="modal fade" id="docViewerModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content" style="height: 85vh;">
+                <div class="modal-header">
+                    <h5 class="modal-title">文件預覽</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <iframe id="pdfViewer" src="" width="100%" height="100%" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁尾 -->
+    <footer class="footer-section py-5">
+        <div class="container">
+            <div class="row gy-4 align-items-start justify-content-between">
+                <div class="col-lg-5 footer-brand-area text-center text-lg-start">
+                    <span class="footer-brand-text">Portfolio.</span>
+                    <p class="footer-tagline mt-2">在理性的程式邏輯中，揉合感性的視覺美學。</p>
+                    <p class="footer-copyright mb-0 mt-4 d-none d-lg-block">© 2026 鍾友恆 All rights reserved.</p>
+                </div>
+                <div class="col-lg-5 footer-info-area">
+                    <div class="footer-info-box">
+                        <span class="footer-info-title text-center text-lg-start d-block mb-3">EXPLORE</span>
+                        <ul class="list-unstyled footer-contact-list">
+                            <li class="d-flex align-items-center justify-content-center justify-content-lg-start mb-2">
+                                <span class="contact-label">About ‧</span>
+                                <a href="index.html" class="contact-link">關於我</a>
+                            </li>
+                            <li class="d-flex align-items-center justify-content-center justify-content-lg-start mb-2">
+                                <span class="contact-label">Works ‧</span>
+                                <a href="projects.html" class="contact-link">作品集</a>
+                            </li>
+                            <li class="d-flex align-items-center justify-content-center justify-content-lg-start mb-2">
+                                <span class="contact-label">Competitions ‧</span>
+                                <a href="competitions.html" class="contact-link">比賽經歷</a>
+                            </li>
+                            <li class="d-flex align-items-center justify-content-center justify-content-lg-start mb-2">
+                                <span class="contact-label">Moments ‧</span>
+                                <a href="gallery.html" class="contact-link">活動照片</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 text-center d-lg-none pt-3 border-top border-light-subtle">
+                    <p class="footer-copyright mb-0">© 2026 鍾友恆 All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function openDoc(url) {
+            const frame = document.getElementById('pdfViewer');
+            frame.src = url;
+            bootstrap.Modal.getOrCreateInstance(document.getElementById('docViewerModal')).show();
+        }
+
+        document.getElementById('docViewerModal').addEventListener('hidden.bs.modal', function () {
+            document.getElementById('pdfViewer').src = "";
+        });
+
+        // 封面可用鍵盤（Enter / 空白鍵）開啟照片
+        document.querySelectorAll('.cover-clickable').forEach(function (el) {
+            el.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    el.click();
+                }
+            });
+        });
+
+        // ===== 活動照片：開啟視窗時從第 1 張開始自動輪播（每 4 秒），關閉時停止 =====
+        (function () {
+            const modalEl = document.getElementById('miaoliPhotoModal');
+            const carouselEl = document.getElementById('miaoliCarousel');
+            if (!modalEl || !carouselEl) return;
+            const carousel = bootstrap.Carousel.getOrCreateInstance(carouselEl, {
+                interval: 4000,   // 每張停留 4 秒
+                pause: 'hover',   // 滑鼠移到照片上會暫停，方便細看
+                ride: false
+            });
+            modalEl.addEventListener('shown.bs.modal', function () { carousel.cycle(); });
+            modalEl.addEventListener('hidden.bs.modal', function () {
+                carousel.pause();
+                carousel.to(0);
+            });
+        })();
+    </script>
+    <script>
+        // ===== 捲動淡入：同一排的卡片依序出現，只播一次 =====
+        (function () {
+            const els = document.querySelectorAll('.reveal');
+            els.forEach(function (el) {
+                const siblings = Array.prototype.filter.call(el.parentElement.children, function (c) {
+                    return c.classList.contains('reveal');
+                });
+                const i = siblings.indexOf(el);
+                if (i > 0) el.style.setProperty('--reveal-delay', Math.min(i * 0.08, 0.4) + 's');
+            });
+            if (!('IntersectionObserver' in window)) {
+                els.forEach(function (el) { el.classList.add('in-view'); });
+                return;
+            }
+            const io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            els.forEach(function (el) { io.observe(el); });
+        })();
+    </script>
+</body>
+
+</html>

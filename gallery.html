@@ -5,11 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>活動照片 | 鍾友恆</title>
+    <meta name="description" content="課外經歷與成長：資訊志工、社團活動與美國夏之旅的照片與心得。">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="活動照片 | 鍾友恆">
+    <meta property="og:description" content="課外經歷與成長：資訊志工、社團活動與美國夏之旅的照片與心得。">
+    <meta property="og:url" content="https://ivan950530-cell.github.io/gallery.html">
+    <meta property="og:image" content="https://ivan950530-cell.github.io/images/frontend-cover.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+TC:wght@400;600;700&display=swap"
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script>document.documentElement.classList.add('js-anim');</script>
     <style>
         body {
             display: flex;
@@ -29,6 +38,8 @@
             transition: all 0.4s ease;
             height: 100%;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .gallery-card:hover {
@@ -57,8 +68,16 @@
             opacity: 0.92;
         }
 
+        /* 讓三張卡片的按鈕都對齊在底部 */
         .gallery-card-body {
             padding: 1.5rem 1.25rem 1.4rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .gallery-card-body .gallery-btn {
+            margin-top: auto;
         }
 
         .gallery-tags {
@@ -127,21 +146,129 @@
             transform: translateY(-2px);
         }
 
-        /* modal */
-        .modal-gallery-img {
-            width: 100%;
-            max-height: 50vh;
-            object-fit: contain;
-            background: #1d1d1d;
+        /* ===== 照片輪播視窗（米白色，與比賽經歷頁一致） ===== */
+        .photo-modal {
+            background: #faf8f5;
+            border: 1px solid #e8e2da;
+            border-radius: 0;
         }
 
-        .modal-text-area {
-            max-height: 25vh;
-            overflow-y: auto;
-            padding: 1.25rem 1.25rem 1.5rem;
-            color: #f4efe8;
-            line-height: 1.9;
+        .photo-modal-en {
+            display: block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #9a8f82;
+        }
+
+        .photo-modal .modal-title {
+            color: #332d26;
+        }
+
+        .photo-slide {
+            display: block;
+            width: 100%;
+            height: 60vh;
+            max-height: 520px;
+            object-fit: contain;
+            background: #efe9e1;
+        }
+
+        .photo-count {
+            margin: 0.8rem 0 0.2rem;
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
             font-size: 0.95rem;
+            letter-spacing: 1px;
+            color: #a38a68;
+        }
+
+        .photo-carousel .carousel-control-prev,
+        .photo-carousel .carousel-control-next {
+            width: 48px;
+            height: 48px;
+            top: calc(min(60vh, 520px) / 2 - 24px);
+            bottom: auto;
+            margin: 0 10px;
+            background: rgba(54, 60, 74, 0.55);
+            border-radius: 50%;
+            opacity: 0.85;
+        }
+
+        .photo-carousel .carousel-control-prev-icon,
+        .photo-carousel .carousel-control-next-icon {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        .gallery-story {
+            max-height: 22vh;
+            overflow-y: auto;
+            margin: 1rem 0 0;
+            padding: 1rem 1.1rem;
+            background: #ffffff;
+            border-left: 3px solid #a38a68;
+            font-size: 0.92rem;
+            line-height: 1.9;
+            color: #6b6257;
+        }
+
+        /* ===== 可點擊的封面（點擊開啟照片輪播） ===== */
+        .cover-clickable {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cover-hint {
+            position: absolute;
+            right: 24px;
+            bottom: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            font-size: 0.78rem;
+            letter-spacing: 0.8px;
+            color: #ffffff;
+            background: rgba(54, 60, 74, 0.72);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            opacity: 0.85;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+        }
+
+        .cover-clickable:hover .cover-hint,
+        .cover-clickable:focus-visible .cover-hint {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .cover-clickable:focus-visible {
+            outline: 2px solid #a38a68;
+            outline-offset: 2px;
+        }
+
+        /* ===== 捲動淡入：卡片進入畫面時由下往上淡入 ===== */
+        .js-anim .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            transition-delay: var(--reveal-delay, 0s);
+        }
+
+        .js-anim .reveal.in-view {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .js-anim .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
         }
     </style>
 </head>
@@ -158,6 +285,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">關於我</a></li>
                     <li class="nav-item"><a class="nav-link" href="projects.html">作品集</a></li>
+                    <li class="nav-item"><a class="nav-link" href="competitions.html">比賽經歷</a></li>
                     <li class="nav-item"><a class="nav-link" href="gallery.html">活動照片</a></li>
                 </ul>
             </div>
@@ -170,18 +298,20 @@
                 <span class="section-subtitle-en">Experiences & Memories</span>
                 <h2 class="section-title mb-3">課外經歷與成長</h2>
                 <p class="text-muted mx-auto" style="max-width: 760px; line-height: 1.9;">
-                    除了學業與專案實作之外，我也透過志工服務與社團參與，學習如何在真實情境中與人合作、表達、規劃與承擔責任。
-                    這些經歷不只是大學生活的片段，也逐漸形塑了我對團隊、溝通與自我成長的理解。
+                    除了學業與專案實作之外，我也透過志工服務、社團參與與海外旅程，學習如何在真實情境中與人合作、表達、規劃與承擔責任。
+                    這些經歷不只是大學生活的片段，也逐漸形塑了我對團隊、溝通、世界與自我成長的理解。
                 </p>
                 <div class="hero-divider-left mx-auto my-4"></div>
             </div>
         </div>
 
+        <!-- 三張卡片：桌機一排三張，平板兩張一排 -->
         <div class="row g-4 justify-content-center">
 
-            <div class="col-lg-5 col-md-6">
+            <div class="col-lg-4 col-md-6 reveal">
                 <div class="gallery-card">
-                    <div class="gallery-card-img-wrap">
+                    <div class="gallery-card-img-wrap cover-clickable" data-gallery="volunteer" role="button"
+                        tabindex="0" aria-label="查看資訊志工活動照片">
                         <img src="images/S__444039174_0.jpg" class="gallery-card-img" alt="資訊志工">
                     </div>
 
@@ -211,9 +341,10 @@
                 </div>
             </div>
 
-            <div class="col-lg-5 col-md-6">
+            <div class="col-lg-4 col-md-6 reveal">
                 <div class="gallery-card">
-                    <div class="gallery-card-img-wrap">
+                    <div class="gallery-card-img-wrap cover-clickable" data-gallery="club" role="button"
+                        tabindex="0" aria-label="查看社團幹部活動照片">
                         <img src="images/S__450928648_0.jpg" class="gallery-card-img" alt="社團經歷">
                     </div>
 
@@ -243,20 +374,69 @@
                 </div>
             </div>
 
+            <!-- ===== 新增：美國夏之旅 ===== -->
+            <div class="col-lg-4 col-md-6 reveal">
+                <div class="gallery-card">
+                    <div class="gallery-card-img-wrap cover-clickable" data-gallery="usa" role="button"
+                        tabindex="0" aria-label="查看美國夏之旅活動照片">
+                        <img src="images/S__489324555_0.jpg" class="gallery-card-img" alt="美國夏之旅">
+                    </div>
+
+                    <div class="gallery-card-body">
+                        <div class="gallery-tags">
+                            <span>Travel Abroad</span>
+                            <span>Cultural Exploration</span>
+                        </div>
+
+                        <h4 class="gallery-title">美國夏之旅 ‧ 第一次飛出亞洲</h4>
+
+                        <p class="gallery-text">
+                            第一次離開亞洲，到從小就嚮往的美國待了一週。這趟旅程讓我真正體會到語言的重要性，
+                            也親身感受到不同的飲食與生活文化。
+                        </p>
+
+                        <div class="gallery-meta">
+                            <span>地點｜美國加州（Cerritos、Anaheim）</span>
+                            <span>時間｜暑假，為期一週</span>
+                            <span>收穫｜英語溝通 / 跨文化體驗 / 國際視野</span>
+                        </div>
+
+                        <button class="gallery-btn" onclick="openGallery('usa')">
+                            查看活動照片與心得
+                        </button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
 
-    <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+    <!-- 活動照片視窗：標題、照片與心得會依點開的活動自動帶入 -->
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content bg-dark text-light">
-                <div class="modal-body p-0">
-                    <div id="galleryCarousel" class="carousel slide" data-bs-ride="false">
+            <div class="modal-content photo-modal">
+                <div class="modal-header border-0 pb-0">
+                    <div>
+                        <span class="photo-modal-en" id="galleryModalEn"></span>
+                        <h5 class="modal-title fw-bold" id="galleryModalLabel"></h5>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pt-3">
+                    <div id="galleryCarousel" class="carousel slide carousel-fade photo-carousel">
                         <div class="carousel-inner" id="galleryCarouselInner"></div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel"
-                            data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">上一張</span>
+                        </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel"
-                            data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">下一張</span>
+                        </button>
                     </div>
+                    <p class="gallery-story" id="galleryStory"></p>
                 </div>
             </div>
         </div>
@@ -273,20 +453,23 @@
                 </div>
                 <div class="col-lg-5 footer-info-area">
                     <div class="footer-info-box">
-                        <span class="footer-info-title text-center text-lg-start d-block mb-3">CONTACT ME</span>
+                        <span class="footer-info-title text-center text-lg-start d-block mb-3">EXPLORE</span>
                         <ul class="list-unstyled footer-contact-list">
                             <li class="d-flex align-items-center justify-content-center justify-content-lg-start mb-2">
-                                <span class="contact-label">Email ‧</span>
-                                <a href="mailto:your.email@example.com" class="contact-link">your.email@example.com</a>
+                                <span class="contact-label">About ‧</span>
+                                <a href="index.html" class="contact-link">關於我</a>
                             </li>
                             <li class="d-flex align-items-center justify-content-center justify-content-lg-start mb-2">
-                                <span class="contact-label">Phone ‧</span>
-                                <span class="contact-text">0000-000-000</span>
+                                <span class="contact-label">Works ‧</span>
+                                <a href="projects.html" class="contact-link">作品集</a>
                             </li>
                             <li class="d-flex align-items-center justify-content-center justify-content-lg-start mb-2">
-                                <span class="contact-label">GitHub ‧</span>
-                                <a href="https://github.com" target="_blank"
-                                    class="contact-link">github.com/yourusername</a>
+                                <span class="contact-label">Competitions ‧</span>
+                                <a href="competitions.html" class="contact-link">比賽經歷</a>
+                            </li>
+                            <li class="d-flex align-items-center justify-content-center justify-content-lg-start mb-2">
+                                <span class="contact-label">Moments ‧</span>
+                                <a href="gallery.html" class="contact-link">活動照片</a>
                             </li>
                         </ul>
                     </div>
@@ -302,43 +485,111 @@
     <script>
         const galleryData = {
             'volunteer': {
+                title: '資訊志工 ‧ 偏鄉陪伴與資訊教學',
+                en: 'Volunteer Service',
                 text: `從小生長在都市裡的我，習慣了資源豐富且便利的生活。但實際走訪到鄉間小學，才發覺一切得來不易。參加資訊志工重於運用資訊教學，陪伴偏鄉學童。過去我在學習路上受過師長及家人許多幫助，如今帶著所學走進小學陪伴小朋友，深刻體悟「讀萬卷書不如行萬里路」。藉由資訊志工，我成為了不僅在書桌前讀書的大學生，也成為了將所學帶給他人的人，更懂得了「施比受更為有福」的道理。`,
                 images: ['images/S__444039174_0.jpg', 'images/S__444039173_0.jpg', 'images/S__444039175_0.jpg', 'images/S__444039176_0.jpg', 'images/S__444047363_0.jpg']
             },
             'club': {
+                title: '社團幹部 ‧ 團隊協作與活動規劃',
+                en: 'Club Leadership',
                 text: `俗話說：「大學三大學分：課業、愛情、社團。」學習專業知識固然重要，但我認為培養與人相處及溝通等軟實力亦不可或缺。在社團擔任活動幹部期間，學習如何策畫活動並與幹部溝通。從每學期社課安排到踏青地點規劃，我學習發表想法並取得平衡，也學會了申請活動經費等實務流程。這些經歷豐富了我的大學生活，更使我獲得許多課本上學不到的珍貴能力。`,
                 images: ['images/S__450928648_0.jpg', 'images/S__450928647_0.jpg', 'images/S__450928644_0.jpg', 'images/S__450928649_0.jpg',]
+            },
+            // ===== 新增：美國夏之旅 =====
+            'usa': {
+                title: '美國夏之旅 ‧ 第一次飛出亞洲',
+                en: 'Summer in the U.S.',
+                text: `這是我第一次離開亞洲，也是第一次踏上從小就嚮往的美國。這次去美國主要是到當地的教會參加聚會，其餘的時間也讓我有機會更認識這個國家。最讓我印象深刻的是語言帶來的衝擊：還在飛機上，我就遇到第一個挑戰：即使空服員看起來也是亞洲面孔，我們之間還是只能用英文溝通。到了美國之後，從食物到生活步調，都和台灣很不一樣。短短一週的旅程，讓我真正認識到英文的重要性，也更想走出去，看看更多不一樣的世界。`,
+                images: ['images/S__489324555_0.jpg', 'images/S__489324553_0.jpg', 'images/S__489324552_0.jpg', 'images/S__489324554_0.jpg']
             }
         };
 
+        // ===== 開啟活動照片：依活動帶入標題、照片與心得，每 5 秒自動換下一張 =====
+        const galleryModalEl = document.getElementById('galleryModal');
+        const galleryCarouselEl = document.getElementById('galleryCarousel');
+        const galleryCarousel = bootstrap.Carousel.getOrCreateInstance(galleryCarouselEl, {
+            interval: 5000,   // 每張停留 5 秒（有心得文字，所以比比賽經歷頁稍慢）
+            pause: 'hover',   // 滑鼠移到照片上會暫停
+            ride: false
+        });
+
         function openGallery(activity) {
             const data = galleryData[activity];
-            const inner = document.getElementById('galleryCarouselInner');
-            inner.innerHTML = '';
+            const total = data.images.length;
 
-            data.images.forEach((src, index) => {
-                // 使用模板字串動態生成每一頁
-                inner.innerHTML += `
-    <div class="carousel-item ${index === 0 ? 'active' : ''}">
-        <div class="d-flex flex-column align-items-center">
-            <img src="${src}" class="d-block w-100 modal-gallery-img">
-            <div class="modal-text-area">
-                <p>${data.text}</p>
-            </div>
-        </div>
-    </div>
-`;
+            document.getElementById('galleryModalEn').textContent = data.en || '';
+            document.getElementById('galleryModalLabel').textContent = data.title || '';
+            document.getElementById('galleryStory').textContent = data.text;
+
+            document.getElementById('galleryCarouselInner').innerHTML = data.images.map(function (src, i) {
+                return '<div class="carousel-item' + (i === 0 ? ' active' : '') + '">' +
+                    '<img src="' + src + '" class="photo-slide" alt="' + (data.title || '活動照片') + ' 第 ' + (i + 1) + ' 張"' +
+                    ' loading="lazy" decoding="async">' +
+                    '<p class="photo-count">' + (i + 1) + ' / ' + total + '</p>' +
+                    '</div>';
+            }).join('');
+
+            // 只有一張照片時不需要左右箭頭
+            galleryCarouselEl.querySelectorAll('.carousel-control-prev, .carousel-control-next').forEach(function (btn) {
+                btn.style.display = total > 1 ? '' : 'none';
             });
 
-            // 確保 Modal 開啟
-            const modalEl = document.getElementById('galleryModal');
-            const myModal = new bootstrap.Modal(modalEl);
-            myModal.show();
-
-            // 強制更新輪播狀態 (解決圖片載入後輪播不滾動的問題)
-            const carouselEl = document.getElementById('galleryCarousel');
-            new bootstrap.Carousel(carouselEl);
+            bootstrap.Modal.getOrCreateInstance(galleryModalEl).show();
         }
+
+        galleryModalEl.addEventListener('shown.bs.modal', function () { galleryCarousel.cycle(); });
+        galleryModalEl.addEventListener('hidden.bs.modal', function () { galleryCarousel.pause(); });
+
+        // ===== 封面點擊：開啟對應的照片輪播，並自動加上「查看照片 N 張」提示 =====
+        const photoIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+            'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+            '<rect x="3" y="5" width="18" height="14" rx="1"></rect><circle cx="9" cy="10" r="1.6"></circle>' +
+            '<path d="M21 16l-5-5-8 8"></path></svg>';
+
+        document.querySelectorAll('.cover-clickable[data-gallery]').forEach(function (cover) {
+            const key = cover.dataset.gallery;
+            if (!galleryData[key]) return;
+
+            const hint = document.createElement('span');
+            hint.className = 'cover-hint';
+            hint.innerHTML = photoIcon + '查看照片 ' + galleryData[key].images.length + ' 張';
+            cover.appendChild(hint);
+
+            cover.addEventListener('click', function () { openGallery(key); });
+            cover.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openGallery(key);
+                }
+            });
+        });
+    </script>
+    <script>
+        // ===== 捲動淡入：同一排的卡片依序出現，只播一次 =====
+        (function () {
+            const els = document.querySelectorAll('.reveal');
+            els.forEach(function (el) {
+                const siblings = Array.prototype.filter.call(el.parentElement.children, function (c) {
+                    return c.classList.contains('reveal');
+                });
+                const i = siblings.indexOf(el);
+                if (i > 0) el.style.setProperty('--reveal-delay', Math.min(i * 0.08, 0.4) + 's');
+            });
+            if (!('IntersectionObserver' in window)) {
+                els.forEach(function (el) { el.classList.add('in-view'); });
+                return;
+            }
+            const io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            els.forEach(function (el) { io.observe(el); });
+        })();
     </script>
 </body>
 
